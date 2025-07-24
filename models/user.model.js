@@ -1,6 +1,8 @@
-const config = require("./index");
+const config = require("./../config/index.config");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const logger = require("./../utils/logger.utils");
+
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -8,16 +10,16 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
-        maxlength: [30, "Username must be under 30 characters"],
-        minlength: [3, "Username must be at least 3 characters"],
-        match: [/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores"]
+        maxlength: [30, "{ module: 'user.model.js' } Username must be under 30 characters"],
+        minlength: [3, "{ module: 'user.model.js' } Username must be at least 3 characters"],
+        match: [/^[a-zA-Z0-9_]+$/, "{ module: 'user.model.js' } Username can only contain letters, numbers, and underscores"]
 
     },
 
     password: {
         type: String,
         required: true,
-        minlength: [5, "Password must be at least 5 characters"],
+        minlength: [5, "{ module: 'user.model.js' } Password must be at least 5 characters"],
     }
 }, {
     timestamps: true,
