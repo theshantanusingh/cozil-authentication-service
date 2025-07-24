@@ -1,0 +1,22 @@
+{
+  "name": "authentication-service",
+  "version": "1.0.0",
+  "description": "This is secure simple username password based authentication system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theshantanusingh/authentication-service.git"
+  },
+  "keywords": [
+    "authentication"
+  ],
+  "author": "Shnatanu Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theshantanusingh/authentication-service/issues"
+  },
+  "homepage": "https://github.com/theshantanusingh/authentication-service#readme"
+}
