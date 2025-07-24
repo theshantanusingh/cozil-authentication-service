@@ -1,0 +1,28 @@
+# Ignore source control
+.git
+.gitignore
+
+# Ignore logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Node.js
+node_modules
+
+# Python virtual environments
+env/
+venv/
+.venv/
+
+# OS files
+.DS_Store
+
+# Docker-related
+Dockerfile*
+docker-compose.*
+
+# Build output
+dist/
+build/
+coverage/
