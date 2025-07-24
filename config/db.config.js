@@ -1,7 +1,7 @@
 "use strict";
 
 const mongoose = require("mongoose");
-const config = require("./index");
+const config = require("./index.config");
 
 // Optional: retry settings
 const MAX_RETRIES = 5;
