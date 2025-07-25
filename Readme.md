@@ -20,7 +20,7 @@ Welcome to the **Authentication Service** of the Cozil project — a modular, pr
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/cozil-auth-service.git
+git clone https://github.com/theshantanusingh/cozil-authentication-service
 cd authentication
 ```
 
