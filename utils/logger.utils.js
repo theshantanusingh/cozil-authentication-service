@@ -1,6 +1,6 @@
 const pino = require("pino");
 
-const isDev = process.env.NODE_ENV !== "production";
+const isDev = process.env.mode !== "production";
 
 const logger = pino({
     transport: isDev

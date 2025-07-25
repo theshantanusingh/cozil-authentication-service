@@ -17,6 +17,7 @@ ensureEnvVars([
   "JWT_REFRESH_TOKEN_SECRET",
   "JWT_ACCESS_EXPIRY",
   "JWT_REFRESH_EXPIRY",
+  "MODE",
 ]);
 
 
@@ -44,6 +45,9 @@ const config = {
     accessTokenExpiry: parseInt(process.env.JWT_ACCESS_EXPIRY),
     refreshTokenSecret: process.env.JWT_REFRESH_TOKEN_SECRET,
     refreshTokenExpiry: parseInt(process.env.JWT_REFRESH_EXPIRY)
+  },
+  env: {
+    mode: process.env.MODE
   }
 };
 
