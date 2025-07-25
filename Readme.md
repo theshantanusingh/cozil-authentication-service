@@ -21,7 +21,7 @@ Welcome to the **Authentication Service** of the Cozil project — a modular, pr
 
 ```bash
 git clone https://github.com/theshantanusingh/cozil-authentication-service
-cd authentication
+cd cozil-authentication-service
 ```
 
 ### 2. Install Dependencies
