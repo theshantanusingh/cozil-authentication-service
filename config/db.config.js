@@ -15,6 +15,8 @@ const RETRY_DELAY_MS = 3000;
 let retries = 0;
 
 const connectToDatabase = async () => {
+    logger.info(" { module: 'db.config.js' } [DB]");
+
     while (retries < MAX_RETRIES) {
         try {
             await mongoose.connect(config.database.uri);

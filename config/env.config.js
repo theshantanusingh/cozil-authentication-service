@@ -23,7 +23,6 @@ ensureEnvVars([
 function ensureEnvVars(vars) {
   vars.forEach((envVar) => {
     if (!process.env[envVar])  throw new Error(`Missing environment variable: ${envVar}`);
-    // else logger.info(`Environment variable ${envVar} is set to ${process.env[envVar]}.`); // have to remove this line in production
   });
 }
 
