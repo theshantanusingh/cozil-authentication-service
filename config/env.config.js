@@ -9,7 +9,11 @@ ensureEnvVars([
   'SERVICE_SECRET_KEY',
   'DATABASE_TYPE',
   'MONGO_URI',
-  'JWT_SECRET'
+  'JWT_SECRET',
+  "JWT_ACCESS_TOKEN_SECRET",
+  "JWT_REFRESH_TOKEN_SECRET",
+  "JWT_ACCESS_EXPIRY",
+  "JWT_REFRESH_EXPIRY",
 ]);
 
 
@@ -33,7 +37,11 @@ const config = {
     uri: process.env.MONGO_URI
   },
   jwt: {
-    secret: process.env.JWT_SECRET
+    secret: process.env.JWT_SECRET,
+    accessTokenSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
+    accessTokenExpiry: parseInt(process.env.JWT_ACCESS_EXPIRY),
+    refreshTokenSecret: process.env.JWT_REFRESH_TOKEN_SECRET,
+    refreshTokenExpiry: parseInt(process.env.JWT_REFRESH_EXPIRY)
   }
 };
 
