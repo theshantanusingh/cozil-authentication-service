@@ -21,7 +21,7 @@ Welcome to the **Authentication Service** of the Cozil project — a modular, pr
 
 ```bash
 git clone https://github.com/yourusername/cozil-auth-service.git
-cd cozil-auth-service
+cd authentication
 ```
 
 ### 2. Install Dependencies
@@ -110,6 +110,23 @@ cozil-auth-service/
 * [ ] OpenAPI documentation
 
 ---
+
+## 🐳 Docker Support
+
+This authentication service comes with a production-ready `Dockerfile` to build and run the app inside a containerized environment.
+
+### 🔨 Build the Docker Image
+
+Build the image and tag it as `cozil-auth-service`:
+
+```bash
+docker build -t cozil-auth-service .
+
+Start the authentication service container using the following command:
+
+```bash
+docker run --env-file .env -p 8080:8080 --name authncozil cozil-auth-service
+
 
 ## 🌊 Final Notes
 
