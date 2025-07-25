@@ -5,6 +5,9 @@ const config = require("./index.config");
 const logger = require("./../utils/logger.utils");
 const User = require("../models/user.model");
 
+logger.info(`{ module: db.config.js} , presently inside file db.config.js`)
+logger.info(` { module: 'db.config.js' } [DB] Attempting to connect to MongoDB at ${config.database.uri}`);
+
 // Optional: retry settings
 const MAX_RETRIES = 5;
 const RETRY_DELAY_MS = 3000;

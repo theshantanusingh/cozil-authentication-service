@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const logger = require("./../utils/logger.utils");
+
+logger.info(" { module: 'token.model.js' } presently inside token.model.js");
 
 const tokenSchema = mongoose.Schema({
     user: {

@@ -4,6 +4,8 @@ const Token = require("./../models/token.model");
 const logger = require("./logger.utils");
 const config = require("./../config/index.config");
 
+logger.info(`{module: token.utils.js} presently inside token.model.js file.`)
+
 function createAccessToken(user) {
 
     try {

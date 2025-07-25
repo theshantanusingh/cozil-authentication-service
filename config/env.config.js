@@ -1,5 +1,8 @@
 "use strict";
 require('dotenv').config({ debug: true });
+const logger = require("./../utils/logger.utils");
+
+logger.info(`{module: env.config.js , presently inside env.config.js file.}`)
 
 ensureEnvVars([
   'SERVICE_HOST',

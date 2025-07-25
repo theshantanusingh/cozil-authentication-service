@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const logger = require("./../utils/logger.utils");
 
+logger.info(" { module: 'user.model.js' } presently inside user.model.js");
+l
 
 const userSchema = new mongoose.Schema({
     username: {
