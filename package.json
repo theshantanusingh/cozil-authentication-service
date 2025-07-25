@@ -4,14 +4,16 @@
   "description": "This is secure simple username password based authentication system.",
   "main": "index.js",
   "scripts": {
-    "test": "npm start"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/theshantanusingh/authentication-service.git"
   },
   "keywords": [
-    "authentication"
+    "authentication" , "auth" , "authn" , "authz"
   ],
   "author": "Shnatanu Singh",
   "license": "ISC",
