@@ -109,7 +109,7 @@ async function loginController(req, res) {
     }
 };
 
-async function logoutContoller(req, res) {
+async function logoutController(req, res) {
     logger.info("{module: auth.controller.js} [logoutContoller] ");
 
     const { refreshToken } = req.body;
@@ -136,4 +136,10 @@ async function logoutContoller(req, res) {
             message: "Error logging out. Internal server error"
         })
     }
+};
+
+module.exports = {
+    signupController,
+    loginController,
+    logoutController
 };
