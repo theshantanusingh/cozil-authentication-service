@@ -20,7 +20,7 @@ async function signupController(req, res) {
     try {
         if (!username || !password) {
             logger.warn(`{module: auth.controller.js}, [signupController] did not provied with all credentials, missing anyone of them.`)
-            res.status(400).json({
+            return res.status(400).json({
                 message: `Either of username or password is missing, do provide us with all credentials to access signup.`
             });
         }
@@ -31,13 +31,15 @@ async function signupController(req, res) {
             return res.status(400).json({ message: "User already exists" });
         }
 
-        const user = await User.create({ username, password });
-        logger.info(`{module: auth.controller.js}, [signupController] user ${user.username} created successfully`);
-
+        let user = {username , password};
         const accessToken = createAccessToken(user);
         const refreshToken = createRefreshToken(user);
 
         const exp = new Date(Date.now() + config.jwt.refreshTokenExpiry);
+
+        user = await User.create({ username, password }); //because access and refresh tokens need plain text
+        logger.info(`{module: auth.controller.js}, [signupController] user ${user.username} created successfully`);
+
         await saveRefreshToken(user._id, refreshToken, exp);
 
         logger.info(`{module: auth.controller.js}, [signupController] user ${user.username} refresh token created successfuly`);
@@ -49,7 +51,7 @@ async function signupController(req, res) {
         });
 
     } catch (err) {
-        logger.err("{module: auth.controller.js}, [signupController] Error signing up user: ${err.message}")
+        logger.error(`{module: auth.controller.js}, [signupController] Error signing up user: ${err.message}`)
         res.status(500).json({
             message: "Internal Server Error"
         })
@@ -59,12 +61,12 @@ async function signupController(req, res) {
 async function loginController(req, res) {
     logger.info("{module: auth.controller.js} [loginController]");
 
-    const { username, password } = req.body;
+    const {username , password} = req.body;
 
     try {
         if (!username || !password) {
             logger.warn(`{module: auth.controller.js}, [loginController] did not provied with all credentials, missing anyone of them.`)
-            res.status(400).json({
+            return res.status(400).json({
                 message: `Either of username or password is missing, do provide us with all credentials to access login.`
             });
         }
@@ -84,9 +86,11 @@ async function loginController(req, res) {
         }
 
         logger.info(`{module: auth.controller.js}, [loginController] user with username ${req.body.username} found, now creating access token and refresh token`);
+        
+        const usercopy = {username , password}; // because access and refresh tokens need plain text
 
-        const accessToken = createAccessToken(user);
-        const refreshToken = createRefreshToken(user);
+        const accessToken = createAccessToken(usercopy);
+        const refreshToken = createRefreshToken(usercopy);
 
         const exp = new Date(Date.now() + config.jwt.refreshTokenExpiry);
 
@@ -94,7 +98,7 @@ async function loginController(req, res) {
 
         await saveRefreshToken(user._id, refreshToken, exp);
 
-        logger.info(`{module: auth.controller.js}, ${req.body.username}, [loginController] has saved the refreshtoken to db.`);
+        logger.info(`{module: auth.controller.js}, ${req.body.username}, [loginController] has saved the refreshtoken to db. Login was successfull`);
 
         return res.status(200).json({
             "message": "Login successfull",
@@ -120,7 +124,7 @@ async function logoutController(req, res) {
 
         if (!deleted) {
             logger.warn(`{module: auth.controller.js}, [logoutContoller] Refresh Token not found, maybe already logout.`)
-            res.status(200).json({
+            return res.status(200).json({
                 message: "Logged out (token may have already expired)"
             })
         }

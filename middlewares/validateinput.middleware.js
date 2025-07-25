@@ -1,14 +1,22 @@
 // middlewares/validateInput.middleware.js
 
+const logger = require("../utils/logger.utils");
+
 function validatePasswordInput(req, res, next) {
     const password = req.body.password;
+
+    if(!password){
+        logger.warn("{module: validateinput.middleware.js} [validatePasswordInput] NO PASSWORD FIELD WAS PROVIDED")
+        return res.status(400).json({
+            "messsage": "The password field is missing"
+        })
+    }
 
     const minLength = 5;
     const hasLetter = /[a-zA-Z]/.test(password);
     const hasNumber = /\d/.test(password);
-    const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    const isValid = password.length >= minLength && hasLetter && hasNumber && hasSpecial;
+    const isValid = password.length >= minLength && hasLetter && hasNumber;
 
     if (!isValid) {
         return res.status(400).json({
@@ -17,7 +25,6 @@ function validatePasswordInput(req, res, next) {
                 length: password.length >= minLength,
                 hasLetter,
                 hasNumber,
-                hasSpecial
             }
         });
     }

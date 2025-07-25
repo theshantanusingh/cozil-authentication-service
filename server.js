@@ -1,7 +1,7 @@
 // Core Imports
 const express = require("express");
 const helmet = require("helmet");
-// const cors = require("cors");
+const cors = require("cors");
 
 // Configs & Utils
 const config = require("./config/index.config");
