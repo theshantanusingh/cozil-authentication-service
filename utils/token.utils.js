@@ -39,7 +39,7 @@ function createRefreshToken(user) {
     }
 }
 
-function saveRefreshToken(userid, token, exp) {
+async function saveRefreshToken(userid, token, exp) {
     const newtoken = {
         user: userid,
         token: token,
@@ -47,7 +47,7 @@ function saveRefreshToken(userid, token, exp) {
     };
     logger.info(` {module: 'token.utils.js'} Saving refresh token for user ${userid}`);
     try {
-        const savedtoken = Token.create(newtoken);
+        const savedtoken = await Token.create(newtoken);
         logger.info(` {module: 'token.utils.js'} Successfully saved refresh token for user ${userid}`);
         return savedtoken;
     } catch (err) {
