@@ -12,9 +12,60 @@ const {
 
 logger.info("{module: auth.controller.js} , presently inside auth.controller.js file.");
 
+async function signupController(req , res){
+
+    const {username , password} = req.body;
+
+    try{
+        if(!username || !password){
+            logger.warn(`{module: auth.controller.js}, did not provied with all credentials, missing anyone of them.`)
+            res.status(400).json({
+                message: `Either of username or password is missing, do provide us with all credentials to access signup.`
+            });
+        }
+        const isalreadypresent = await User.findOne({username});
+
+        if(isalreadypresent){
+            logger.warn(`{module: auth.controller.js} , user with username ${username} already exists`);
+            return res.status(400).json({message: "User already exists"});
+        }
+        
+        const user = await User.create({username , password});
+        logger.info(`{module: auth.controller.js} , user ${user.username} created successfully`);
+
+        const accessToken = createAccessToken(user);
+        const refreshToken = createRefreshToken(user);
+
+        const exp = new Date(Date.now() + config.jwt.refreshTokenExpiry);
+
+        await saveRefreshToken(user._id, refreshToken, exp);
+
+        return res.status(201).json({
+            message: "User created successfully",
+            accessToken,
+            refreshToken
+        });
+
+    } catch(err){
+        logger.err("{module: auth.controller.js} , [signupController] Error signing up user: ${err.message}")
+        res.status(500).json({
+            message: "Internal Server Error"
+        })
+    }
+};
+
 async function loginController(req, res) {
 
+    const {username , password} = req.body;
+
     try {
+        if(!username || !password){
+            logger.warn(`{module: auth.controller.js}, did not provied with all credentials, missing anyone of them.`)
+            res.status(400).json({
+                message: `Either of username or password is missing, do provide us with all credentials to access login.`
+            });
+        }
+
         const user = await User.findOne({ username: req.body.username });
 
         if (!user) {
@@ -75,9 +126,9 @@ async function logoutContoller(req, res) {
         });
 
     } catch (err) {
-        logger.error(`{module: auth.controller.js} ,Error during logout,  err: ${err}`)
+        logger.error(`{module: auth.controller.js} ,Error during logout. Internal server error,  err: ${err}`)
         res.status(500).json({
-            message: "Error logging out"
+            message: "Error logging out. Internal server error"
         })
     }
 };
