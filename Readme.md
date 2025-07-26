@@ -1,12 +1,12 @@
-# 🛡️ Cozil Auth Service
+# 🛡️Auth Service (This is transferred from another project of mine, as this service is not needed anymone, so I mae it standalone. Use it in any of your project)
 
-Welcome to the **Authentication Service** of the Cozil project — a modular, production-ready microservice designed with industry best practices. This project is part of a broader **distributed, microservices-based architecture** intended for deep learning in full-stack development, authentication strategies, DevOps, and secure deployments.
+Welcome to the **Authentication Service**. — a modular, production-ready microservice designed with industry best practices. This project is part of a broader **distributed, microservices-based architecture** intended for deep learning in full-stack development, authentication strategies, DevOps, and secure deployments.
 
 ---
 
 ## 🌟 Project Vision
 
-* **Microservice Architecture**: Each service in the Cozil ecosystem is independently containerized, communicates via HTTP (or eventually async queues), and is designed for high cohesion and low coupling.
+* **Microservice Architecture**: Completely standalone service use it as you want.
 * **Real-World Security**: This auth service supports **access tokens and refresh tokens**, securely stored in MongoDB. Advanced practices like **token rotation** and **Redis-based session blacklisting** will be integrated shortly.
 * **Reverse Proxy (Nginx)**: The full system will be served behind a single **Nginx gateway**, enabling request routing, rate limiting, SSL termination, and logging.
 * **Docker Ready**: All services, including the frontend (already complete), will be containerized for local dev, CI/CD, and cloud deployment.
@@ -20,8 +20,8 @@ Welcome to the **Authentication Service** of the Cozil project — a modular, pr
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/theshantanusingh/cozil-authentication-service
-cd cozil-authentication-service
+git clone https://github.com/theshantanusingh/authentication-service
+cd authentication-service
 ```
 
 ### 2. Install Dependencies
@@ -120,12 +120,12 @@ This authentication service comes with a production-ready `Dockerfile` to build 
 Build the image and tag it as `cozil-auth-service`:
 
 ```bash
-docker build -t cozil-auth-service .
+docker build -t auth-service .
 
 Start the authentication service container using the following command:
 
 ```bash
-docker run --env-file .env -p 8080:8080 --name authncozil cozil-auth-service
+docker run --env-file .env -p 8080:8080 --name authn auth-service
 
 
 ## 🌊 Final Notes
